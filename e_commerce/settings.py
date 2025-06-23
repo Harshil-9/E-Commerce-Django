@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'e_app',
+    'Auth',
+    'Checkout',
+    'Products',
 ]
 
 MIDDLEWARE = [
@@ -81,10 +87,10 @@ DATABASES = {
     }
 }
 
-RAZORPAY_KEY_ID = 'rzp_test_nokAV32aT8gMSM'
-RAZORPAY_KEY_SECRET = 'mAJShHWBnccJbFXsUnr4df5X'
+RAZORPAY_KEY_ID = os.environ.get('RAZORPAY_KEY_ID')
+RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET')
 
-AUTH_USER_MODEL = 'e_app.CustomUser'
+AUTH_USER_MODEL = 'Auth.CustomUser'
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
@@ -122,7 +128,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-AUTH_USER_MODEL = "e_app.CustomUser"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
