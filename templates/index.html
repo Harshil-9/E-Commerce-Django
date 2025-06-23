@@ -1,0 +1,361 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<style>
+    .banner-section {
+        background: linear-gradient(120deg, #4f8cff 60%, #a6c1ee 100%);
+        padding: 3.5rem 0 2.5rem 0;
+        border-radius: 0 0 40px 40px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12);
+        margin-bottom: 2rem;
+    }
+    .banner-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .banner-img {
+        border-radius: 2rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+        background: #fff;
+        padding: 0.5rem;
+        max-width: 100%;
+        height: auto;
+    }
+    .text-content {
+        max-width: 540px;
+        color: #fff;
+        text-align: left;
+    }
+    .custom-heading {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 1.2rem;
+        line-height: 1.2;
+        letter-spacing: 1px;
+    }
+    .custom-heading .highlight {
+        color: #ffe066;
+        background: #232526;
+        padding: 0.2em 0.5em;
+        border-radius: 0.5em;
+        font-size: 1.1em;
+        margin-left: 0.2em;
+    }
+    .banner-section .lead {
+        color: #f8f9fa;
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    .banner-section .button-group .btn {
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 12px;
+        margin-right: 0.7rem;
+        box-shadow: 0 2px 8px rgba(31, 38, 135, 0.08);
+        transition: transform 0.15s;
+    }
+    .banner-section .button-group .btn:hover {
+        transform: translateY(-2px) scale(1.04);
+    }
+    .btn-success.whatsapp {
+        background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
+        border: none;
+        color: #fff;
+    }
+    .btn-light.open-popup {
+        background: #fff;
+        color: #4f8cff;
+        border: 1px solid #4f8cff;
+    }
+    .btn-light.open-popup:hover {
+        background: #e3f0ff;
+        color: #2d3a4b;
+    }
+    /* Product Card Styles */
+    .product-item {
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(31, 38, 135, 0.10);
+        transition: box-shadow 0.2s, transform 0.2s;
+        background: #fff;
+        min-height: 370px;
+        position: relative;
+    }
+    .product-item:hover {
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.18);
+        transform: translateY(-5px) scale(1.03);
+        border: 1.5px solid #4f8cff;
+    }
+    .product-item .card-img-top {
+        border-radius: 18px 18px 0 0;
+        height: 180px;
+        object-fit: cover;
+        background: #f8f9fa;
+    }
+    .product-item .card-title {
+        font-weight: 700;
+        color: #2d3a4b;
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+    }
+    .product-item .card-text {
+        color: #4f8cff;
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    .star-rating i {
+        color: #ffe066;
+        font-size: 1.1rem;
+        margin-right: 2px;
+    }
+    .button-group .btn {
+        margin-right: 0.5rem;
+        margin-bottom: 0.3rem;
+    }
+    .button-group .btn:last-child {
+        margin-right: 0;
+    }
+    /* Info Cards */
+    .info-card {
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(31, 38, 135, 0.10);
+        border: none;
+        overflow: hidden;
+    }
+    .info-card.bg-warning {
+        background: linear-gradient(90deg, #ffe066 60%, #fffbe6 100%);
+    }
+    .info-card .card-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #2d3a4b;
+    }
+    .info-card .card-text {
+        color: #4f8cff;
+        font-size: 1.05rem;
+    }
+    .info-card .btn {
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+    @media (max-width: 991px) {
+        .banner-content {
+            flex-direction: column;
+            text-align: center;
+        }
+        .text-content {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+    }
+</style>
+
+<section class="banner-section mb-4">
+    <div class="banner-content">
+        <div class="image-content">
+            <img src="https://cdn.pixabay.com/photo/2023/07/04/19/43/man-8106958_1280.png" class="banner-img" height="300" width="400" alt="Banner" />
+        </div>
+        <div class="text-content">
+            <h1 class="custom-heading">
+                BUY RENEWED LAPTOP WITH <span class="highlight">1 YEAR WARRANTY</span>
+            </h1>
+            <p class="lead text-white">Get Free Trial First. If satisfied, then buy IT.</p>
+            <div class="button-group">
+                <a href="#" class="btn btn-success whatsapp">
+                    <span><i class="bi bi-whatsapp"></i> Chat Now</span>
+                </a>
+                <a href="#" class="btn btn-light open-popup">
+                    <span><i class="bi bi-chat-dots"></i> Enquire Now</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main>
+    <!-- Product Cards -->
+    <div class="container mt-5 mb-5">
+        <div class="text-center text-muted mb-5">
+            <h3 class="fw-bold" style="letter-spacing:1px;">SOME OF THE BEST PRODUCTS</h3>
+        </div>
+        <div class="row">
+            {% for laptop in laptops|slice:":4" %}
+            <div class="col-xl-3 col-lg-4 col-md-6 my-3">
+                <a href="{% url 'product_detail' laptop.id %}" style="text-decoration: none; color: inherit;">
+                    <div class="card product-item card-item" data-bs-toggle="tooltip" title="Click to see more detail">
+                        <img class="card-img-top" src="{{ laptop.product_image.url }}" alt="{{ laptop.name }}" />
+                        <div class="card-body">
+                            <h6 class="card-title">{{ laptop.name }}</h6>
+                            <h5 class="card-text">₹{{ laptop.price }}</h5>
+                            <span class="star-rating">
+                                <i class="bi bi-star" data-index="1"></i>
+                                <i class="bi bi-star" data-index="2"></i>
+                                <i class="bi bi-star" data-index="3"></i>
+                                <i class="bi bi-star" data-index="4"></i>
+                                <i class="bi bi-star" data-index="5"></i>
+                            </span>
+                            <div class="button-group mt-2">
+                                <a href="{% url 'cart' %}" class="btn btn-dark">Buy Now</a>
+                                {% if user.is_authenticated %}
+                                <form method="post" action="{% url 'add_to_cart' laptop.id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success">Add to Cart</button>
+                                </form>
+                                {% else %}
+                                <a href="{% url 'login' %}" class="btn btn-warning">Login to Add</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Info Card 1 -->
+    <div class="container col-10 mt-5">
+        <div class="card mb-5 info-card bg-warning">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-4 text-center">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKscqFArZ6bBfdsjJ65Xzv5CuhB15whyNs9g&s" class="img-fluid rounded-start mt-3 mb-3" width="220px" alt="Lowest Price Guarantee">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title mt-3">Lowest Price Guarantee</h5>
+                        <p class="card-text text-muted mt-3 mb-3">Get the most satisfying service with a 1-week replacement guarantee after buying.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <div class="button-group">
+                            <a href="#" class="btn btn-success whatsapp">
+                                <span><i class="bi bi-whatsapp"></i> Whatsapp</span>
+                            </a>
+                            <a href="#" class="btn btn-dark open-popup">
+                                <span><i class="bi bi-chat-dots"></i> Enquire Now</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- More Products -->
+    <div class="container mt-5 mb-5">
+        <div class="text-center text-muted mb-5">
+            <h3 class="fw-bold" style="letter-spacing:1px;">EXPLORE MORE PRODUCTS</h3>
+        </div>
+        <div class="row">
+            {% for laptop in laptops|slice:":8" %}
+            <div class="col-xl-3 col-lg-4 col-md-6 mt-5">
+                <a href="{% url 'product_detail' laptop.id %}" style="text-decoration: none; color: inherit;">
+                    <div class="card product-item card-item" data-bs-toggle="tooltip" title="Click to see more detail">
+                        <img class="card-img-top" src="{{ laptop.product_image.url }}" alt="{{ laptop.name }}" />
+                        <div class="card-body">
+                            <h6 class="card-title">{{ laptop.name }}</h6>
+                            <h5 class="card-text">₹{{ laptop.price }}</h5>
+                            <span class="star-rating">
+                                <i class="bi bi-star" data-index="1"></i>
+                                <i class="bi bi-star" data-index="2"></i>
+                                <i class="bi bi-star" data-index="3"></i>
+                                <i class="bi bi-star" data-index="4"></i>
+                                <i class="bi bi-star" data-index="5"></i>
+                            </span>
+                            <div class="button-group mt-2">
+                                <a href="{% url 'cart' %}" class="btn btn-dark">Buy Now</a>
+                                {% if user.is_authenticated %}
+                                <form method="post" action="{% url 'add_to_cart' laptop.id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success">Add to Cart</button>
+                                </form>
+                                {% else %}
+                                <a href="{% url 'login' %}" class="btn btn-warning">Login to Add</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Info Card 2 -->
+    <div class="container col-10 mt-5">
+        <div class="card mb-5 info-card bg-warning">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-7 ps-5">
+                    <div class="card-body">
+                        <h5 class="card-title mt-3"><strong>Get Heavy Discount on Bulk buying.</strong></h5>
+                        <p class="card-text text-muted mt-3 mb-3">Get the special pricing for corporates.</p>
+                        <p class="card-text"><small class="text-muted">Get discount for refurbished laptops.</small></p>
+                        <p class="card-text mb-3">Imported best quality | Lowest Price | After Sale Service 24/7</p>
+                    </div>
+                </div>
+                <div class="col-md-5 d-flex justify-content-end align-items-center">
+                    <div class="card-body d-flex flex-column align-items-end gap-2">
+                        <a href="#" class="btn btn-success whatsapp">
+                            <i class="bi bi-whatsapp"></i> Whatsapp
+                        </a>
+                        <a href="#" class="btn btn-light open-popup">
+                            <i class="bi bi-chat-dots"></i><strong> Enquire Now</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- More Products -->
+    <div class="container mt-5 mb-5">
+        <div class="text-center text-muted mb-5">
+            <h3 class="fw-bold" style="letter-spacing:1px;">RECOMENDED PRODUCT</h3>
+        </div>
+        <div class="row">
+            {% for laptop in laptops|slice:":8" %}
+            <div class="col-xl-3 col-lg-4 col-md-6 mt-5">
+                <a href="{% url 'product_detail' laptop.id %}" style="text-decoration: none; color: inherit;">
+                    <div class="card product-item card-item" data-bs-toggle="tooltip" title="Click to see more detail">
+                        <img class="card-img-top" src="{{ laptop.product_image.url }}" alt="{{ laptop.name }}" />
+                        <div class="card-body">
+                            <h6 class="card-title">{{ laptop.name }}</h6>
+                            <h5 class="card-text">₹{{ laptop.price }}</h5>
+                            <span class="star-rating">
+                                <i class="bi bi-star" data-index="1"></i>
+                                <i class="bi bi-star" data-index="2"></i>
+                                <i class="bi bi-star" data-index="3"></i>
+                                <i class="bi bi-star" data-index="4"></i>
+                                <i class="bi bi-star" data-index="5"></i>
+                            </span>
+                            <div class="button-group mt-2">
+                                <a href="{% url 'cart' %}" class="btn btn-dark">Buy Now</a>
+                                {% if user.is_authenticated %}
+                                <form method="post" action="{% url 'add_to_cart' laptop.id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success">Add to Cart</button>
+                                </form>
+                                {% else %}
+                                <a href="{% url 'login' %}" class="btn btn-warning">Login to Add</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+<footer class="bg-dark text-white text-center py-3">
+    <p class="mb-0">&copy; 2025 LaptopQU. All rights reserved.</p>
+</footer>
+
+{% endblock %}

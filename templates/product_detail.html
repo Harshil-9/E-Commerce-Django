@@ -1,0 +1,336 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .banner-section {
+        background: linear-gradient(120deg, #0a5c9e 0%, #002e4d 100%);
+        color: #fff;
+        padding: 3rem 1rem 2rem 1rem;
+        border-radius: 0 0 2rem 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 8px 32px rgba(10,92,158,0.10);
+    }
+    .banner-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: auto;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+    }
+    .image-content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+    }
+    .main-product-img {
+        border-radius: 1.2rem;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+        max-width: 350px;
+        width: 100%;
+        background: #fff;
+        padding: 1rem;
+    }
+    .thumbnail-row {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        margin-top: 1.2rem;
+        justify-content: center;
+    }
+    .thumbnail-img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 0.7rem;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        cursor: pointer;
+        transition: border 0.2s;
+    }
+    .thumbnail-img:hover {
+        border: 2px solid #ffc107;
+    }
+    .text-content {
+        flex: 1;
+        min-width: 270px;
+    }
+    .product-title {
+        font-size: 2.1rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 0.7rem;
+        letter-spacing: 1px;
+    }
+    .product-price {
+        font-size: 1.5rem;
+        color: #ffc107;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    .free-shipping {
+        color: #16a34a;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 1.2rem;
+    }
+    .form-select {
+        max-width: 220px;
+        margin-bottom: 1rem;
+    }
+    .btn-warning {
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 0.6rem 2.2rem;
+        border-radius: 2rem;
+        box-shadow: 0 2px 12px rgba(255,193,7,0.10);
+        transition: background 0.2s;
+    }
+    .btn-warning:hover {
+        background: #ffb300;
+    }
+    .details-list {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .details-list h6 {
+        font-size: 1.07rem;
+        font-weight: 500;
+        color: #e0e7ff;
+        margin-bottom: 0.3rem;
+    }
+    .spec-section {
+        background: #f8fafc;
+        border-radius: 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        padding: 2rem 1.5rem;
+        margin-bottom: 2rem;
+    }
+    .spec-section h4 {
+        color: #0a5c9e;
+        font-weight: 700;
+        margin-bottom: 1.2rem;
+        letter-spacing: 1px;
+    }
+    .spec-section h6 {
+        color: #374151;
+        font-weight: 600;
+        margin-bottom: 0.7rem;
+    }
+    .table {
+        background: #fff;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        margin-bottom: 0;
+    }
+    .table-bordered > :not(caption) > * > * {
+        border-color: #e0e7ff;
+    }
+    .breadcrumb {
+        background: transparent;
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+    .breadcrumb a {
+        color: #0a5c9e;
+        text-decoration: none;
+    }
+    .breadcrumb .active {
+        color: #6366f1;
+    }
+    @media (max-width: 991px) {
+        .banner-content {
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .text-content, .image-content {
+            width: 100%;
+        }
+    }
+</style>
+
+<main>
+    <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+        <ol class="breadcrumb ms-3 mt-3 mb-5">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'all_product' %}">Products</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ laptop.name }}</li>
+        </ol>
+    </nav>
+
+    <section class="banner-section">
+        <div class="banner-content">
+            <div class="image-content">
+                <div>
+                    <img src="{{ laptop.product_image.url }}" class="main-product-img" alt="{{ laptop.name }}">
+                    <div class="thumbnail-row mt-3">
+                        <i class="bi bi-arrow-left-circle-fill fs-4 text-light"></i>
+                        <img src="{{ laptop.product_image.url }}" class="thumbnail-img" alt="">
+                        <img src="https://m.media-amazon.com/images/I/61npLUhCEuL.jpg" class="thumbnail-img" alt="">
+                        <img src="https://m.media-amazon.com/images/I/61npLUhCEuL.jpg" class="thumbnail-img" alt="">
+                        <img src="https://m.media-amazon.com/images/I/61npLUhCEuL.jpg" class="thumbnail-img" alt="">
+                        <i class="bi bi-arrow-right-circle-fill fs-4 text-light"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="text-content">
+                <div class="product-title">{{ laptop.name }}</div>
+                <div class="product-price">₹{{ laptop.price }}</div>
+                <div class="free-shipping"><i class="bi bi-truck"></i> Free Shipping</div>
+                <form method="post" action="{% url 'add_to_cart' laptop.id %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-6">
+                            <select class="form-select" aria-label="Select RAM">
+                                <option selected>RAM</option>
+                                <option value="1">8 GB</option>
+                                <option value="2">16 GB</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <select class="form-select" aria-label="Select Storage">
+                                <option selected>Storage</option>
+                                <option value="1">256GB SSD</option>
+                                <option value="2">512GB SSD</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning mt-3 mb-2 w-100"><i class="bi bi-cart-plus me-2"></i>Add to Cart</button>
+                </form>
+                <div class="details-list">
+                    <h6><i class="bi bi-cpu me-2"></i>Processor: <span class="fw-normal">{{ laptop.processor_brand }}</span></h6>
+                    <h6><i class="bi bi-memory me-2"></i>Memory: <span class="fw-normal">{{ laptop.ram }}GB SSD</span></h6>
+                    <h6><i class="bi bi-display me-2"></i>Display: <span class="fw-normal">{{ laptop.display }}</span></h6>
+                    <h6><i class="bi bi-windows me-2"></i>Operating System: <span class="fw-normal">{{ laptop.operating_system }}</span></h6>
+                    <h6><i class="bi bi-battery-charging me-2"></i>Battery: <span class="fw-normal">{{ laptop.battery }}</span></h6>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="spec-section">
+            <h4>SPECIFICATIONS</h4>
+            <h6>Processor and Memory Details</h6>
+            <table class="table table-bordered mt-3 mb-4">
+                <tbody>
+                    <tr>
+                        <td>Processor Brand</td>
+                        <td>{{ laptop.processor_brand }}</td>
+                    </tr>
+                    <tr>
+                        <td>Processor Name</td>
+                        <td>{{ laptop.processor_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Processor Generation</td>
+                        <td>{{ laptop.processor_generation }}</td>
+                    </tr>
+                    <tr>
+                        <td>RAM</td>
+                        <td>{{ laptop.ram }}GB</td>
+                    </tr>
+                    <tr>
+                        <td>Storage</td>
+                        <td>{{ laptop.storage }}GB SSD</td>
+                    </tr>
+                    <tr>
+                        <td>Graphic Processor</td>
+                        <td>{{ laptop.graphic_processor }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h6 class="mt-4">Display and Others</h6>
+            <table class="table table-bordered mb-0 mt-3">
+                <tbody>
+                    <tr>
+                        <td>TouchScreen</td>
+                        <td>{{ laptop.touch_screen }}</td>
+                    </tr>
+                    <tr>
+                        <td>Screen Size</td>
+                        <td>{{ laptop.screen_size }}</td>
+                    </tr>
+                    <tr>
+                        <td>Screen Resolution</td>
+                        <td>{{ laptop.screen_resolution }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Review & Rating Section -->
+        <div class="spec-section mt-4">
+            <h4>Customer Reviews & Ratings</h4>
+            <div class="mb-3">
+                <span class="fs-5 fw-bold">Average Rating: </span>
+                <span class="fs-5 text-warning">
+                    {% for i in "12345"|slice:":avg_rating"|make_list %}
+                        <i class="bi bi-star-fill"></i>
+                    {% endfor %}
+                    {% for i in "12345"|slice:"avg_rating:"|make_list %}
+                        <i class="bi bi-star"></i>
+                    {% endfor %}
+                    <span class="ms-2 text-dark">{{ avg_rating }}/5</span>
+                </span>
+            </div>
+            <hr>
+            <div>
+                <h5 class="mb-3">All Reviews:</h5>
+                {% if reviews %}
+                    {% for review in reviews %}
+                        <div class="mb-3 p-3 rounded bg-light">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="fw-bold me-2">{{ review.user.username }}</span>
+                                <span class="text-warning">
+                                    {% for i in "12345"|slice:":review.rating"|make_list %}
+                                        <i class="bi bi-star-fill"></i>
+                                    {% endfor %}
+                                    {% for i in "12345"|slice:"review.rating:"|make_list %}
+                                        <i class="bi bi-star"></i>
+                                    {% endfor %}
+                                </span>
+                                <span class="ms-2 text-muted small">{{ review.created_at|date:"M d, Y" }}</span>
+                            </div>
+                            <div>{{ review.comment }}</div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted">No reviews yet. Be the first to review this product!</p>
+                {% endif %}
+            </div>
+            <hr>
+            <div>
+                <h5 class="mb-3">Write a Review:</h5>
+                {% if form %}
+                    <form method="post" action="{% url 'product_detail' laptop.id %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.rating.label_tag }}<br>
+                            {{ form.rating }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.comment.label_tag }}<br>
+                            {{ form.comment }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </form>
+                {% else %}
+                    <p class="text-muted">Please <a href="{% url 'login' %}?next={{ request.path }}">login</a> to write a review.</p>
+                {% endif %}
+            </div>
+        </div>
+
+</main>
+
+<footer class="bg-dark text-white text-center py-3">
+    <p class="mb-0">&copy; 2025 LaptopQU. All rights reserved.</p>
+</footer>
+
+{% endblock %}

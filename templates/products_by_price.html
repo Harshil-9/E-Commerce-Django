@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5 mb-5">
+    <div class="text-center text-muted mb-5">
+        <h3>Products with price under: {{ price|upper }}</h3>
+    </div>
+    <div class="row">
+        {% for laptop in laptops|slice:":4" %}
+        <div class="col-xl-3 col-lg-4 col-md-6 my-3">
+            <a href="{% url 'product_detail' laptop.id %}" style="text-decoration: none; color: inherit;">
+                <div class="card product-item card-item" data-bs-toggle="tooltip" title="Click to see more detail">
+                    <img class="card-img-top" src="{{ laptop.product_image.url }}" alt="{{ laptop.name }}" />
+                    <div class="card-body">
+                        <h6 class="card-title">{{ laptop.name }}</h6>
+                        <h5 class="card-text">₹{{ laptop.price }}</h5>
+                        <span class="star-rating">
+                            <i class="bi bi-star" data-index="1"></i>
+                            <i class="bi bi-star" data-index="2"></i>
+                            <i class="bi bi-star" data-index="3"></i>
+                            <i class="bi bi-star" data-index="4"></i>
+                            <i class="bi bi-star" data-index="5"></i>
+                        </span>
+                        <div class="button-group mt-2">
+                            <a href="{% url 'cart' %}" class="btn btn-dark">Buy Now</a>
+                            {% if user.is_authenticated %}
+                            <form method="post" action="{% url 'add_to_cart' laptop.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success">Add to Cart</button>
+                            </form>
+                            {% else %}
+                            <a href="{% url 'login' %}" class="btn btn-warning">Login to Add</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center text-muted">No products found for this processor.</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

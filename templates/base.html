@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{% block title %}LaptopQU{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <style>
+        .banner-section {
+            background: linear-gradient(to bottom, #0a5c9e, #002e4d);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 1rem;
+            min-height: 60vh;
+        }
+
+        .banner-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+            max-width: 1200px;
+            width: 100%;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .image-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 100%;
+        }
+
+        .text-content {
+            flex: 1;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .custom-heading {
+            font-size: 1.6rem !important;
+            line-height: 1.3 !important;
+            margin-bottom: 1rem !important;
+            color: #fff !important;
+        }
+
+        .highlight {
+            background-color: #ffc107;
+            color: #000;
+            padding: 0 6px;
+            border-radius: 4px;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+
+        .product-item {
+            width: 300px;
+            margin: auto;
+            height: 420px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-img-top {
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .star-selected {
+            color: gold;
+            cursor: pointer;
+        }
+
+        .star-rating .bi-star {
+            cursor: pointer;
+            font-size: 1.3rem;
+        }
+        .navbar-nav .nav-link {
+        transition: color 0.2s, background 0.2s;
+    }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .dropdown-menu .dropdown-item:hover {
+            color: #fff !important;
+            background: linear-gradient(90deg, #4f8cff 0%, #6fc3ff 100%) !important;
+        }
+        .dropdown-menu {
+            min-width: 210px;
+            border: none;
+        }
+        .navbar-brand span {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        .navbar {
+            box-shadow: 0 4px 24px rgba(31, 38,)
+        }
+
+    </style>
+</head>
+
+<body>
+{% load static %}
+
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-lg" style="background: linear-gradient(90deg, #232526 0%, #4f8cff 100%);">
+    <div class="container-fluid py-2">
+        <!-- Logo + Brand -->
+        <a class="navbar-brand d-flex align-items-center text-white fw-bold" href="{% url 'index' %}">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWwRpEra-kTNmY1eBPkKhsR8oPFGt0gUMx9g&s" class="me-2 rounded-circle border border-2 border-light shadow-sm" height="32" alt="Logo" />
+            <span style="font-size:1.7rem; letter-spacing:2px;">LaptopQU</span>
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <!-- Center Navigation -->
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-2">
+                <!-- My Account -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light fw-semibold" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle me-1"></i> My Account
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-lg rounded-3 animate__animated animate__fadeIn bg-dark">
+                        <li><a class="dropdown-item text-secondary" href="{% url 'login' %}"><i class="bi bi-box-arrow-in-right me-2"></i>Login</a></li>
+                        <li><a class="dropdown-item text-secondary" href="{% url 'register2' %}"><i class="bi bi-person-plus me-2"></i>Register</a></li>
+                        <li><hr class="dropdown-divider bg-secondary"></li>
+                        <li>
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Shop by Brand -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light fw-semibold" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-laptop me-1"></i>Shop by Brand
+                    </a>
+                    <ul class="dropdown-menu shadow-lg rounded-3 animate__animated animate__fadeIn bg-dark">
+                        <li><a class="dropdown-item text-secondary" href="{% url 'products_by_brand' 'Dell' %}"><i class="bi bi-pc me-2"></i>Dell</a></li>
+                        <li><a class="dropdown-item text-secondary" href="{% url 'products_by_brand' 'Lenovo' %}"><i class="bi bi-pc me-2"></i>Lenovo</a></li>
+                        <li><a class="dropdown-item text-secondary" href="{% url 'products_by_brand' 'HP' %}"><i class="bi bi-pc me-2"></i>HP</a></li>
+                        <li><a class="dropdown-item text-secondary" href="{% url 'products_by_brand' 'MacBook' %}"><i class="bi bi-apple me-2"></i>MacBook</a></li>
+                    </ul>
+                </li>
+
+                <!-- Shop by Price -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light fw-semibold" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-currency-rupee me-1"></i>Shop by Price
+                    </a>
+                    <ul class="dropdown-menu shadow-lg rounded-3 animate__animated animate__fadeIn bg-dark">
+                        <li><a class="dropdown-item text-secondary" href="{% url 'products_by_price' 0 15000 %}">Under ₹15,000</a></li>
+                        <li><a class="dropdown-item text-secondary" href="{% url 'products_by_price' 15001 20000 %}">₹15,001 - ₹20,000</a></li>
+                        <li><a class="dropdown-item text-secondary" href="{% url 'products_by_price' 20001 25000 %}">₹20,001 - ₹25,000</a></li>
+                        <li><a class="dropdown-item text-secondary" href="{% url 'products_by_price' 25001 30000 %}">₹25,001 - ₹30,000</a></li>
+                        <li><a class="dropdown-item text-secondary" href="{% url 'products_by_price' 30001 35000 %}">₹30,001 - ₹35,000</a></li>
+                        <li><a class="dropdown-item text-secondary" href="{% url 'products_by_price' 35001 40000 %}">₹35,001 - ₹40,000</a></li>
+                    </ul>
+                </li>
+
+                <!-- Shop by Processor -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light fw-semibold" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-cpu me-1"></i>Shop by Processor
+                    </a>
+                    <ul class="dropdown-menu shadow-lg rounded-3 animate__animated animate__fadeIn bg-dark">
+                        <li><a class="dropdown-item text-secondary" href="{% url 'products_by_processor' 'i5' %}">Intel i5</a></li>
+                        <li><a class="dropdown-item text-secondary" href="{% url 'products_by_processor' 'i7' %}">Intel i7</a></li>
+                    </ul>
+                </li>
+
+                <!-- Store -->
+                <li class="nav-item">
+                    <a class="nav-link text-light fw-semibold" href="{% url 'all_product' %}">
+                        <i class="bi bi-shop me-1"></i>Store
+                    </a>
+                </li>
+
+                <!-- Search -->
+                <li class="nav-item position-relative d-flex align-items-center ms-lg-3">
+                    <input id="search-query" class="form-control form-control-sm rounded-pill px-3 shadow-sm" type="search" name="q" placeholder="Search products..." aria-label="Search" autocomplete="off" style="min-width:180px;">
+                    <div id="search-results" class="dropdown-menu w-100" style="display:none; max-height:300px; overflow-y:auto; position:absolute; top:100%; left:0; z-index:9999;"></div>
+                </li>
+            </ul>
+
+            <!-- Right Icons -->
+            <div class="d-flex align-items-center ms-lg-3">
+                <a class="nav-link text-white d-flex align-items-center" href="{% url 'profile' %}">
+                    <i class="bi bi-person-circle fs-5 me-1"></i>
+                    <span class="fw-semibold">{{ user.name }}</span>
+                </a>
+                <a class="nav-link text-white position-relative ms-2" href="{% url 'cart' %}">
+                    <i class="bi bi-cart fs-5"></i>
+                    <span id="cart-count-badge" class="badge bg-warning text-dark position-absolute top-0 start-100 translate-middle rounded-pill px-2" style="font-size:0.85em;">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+
+
+<!-- Scripts -->
+<!-- Bootstrap JS and Extras -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" 
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" 
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" 
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" 
+        crossorigin="anonymous"></script>
+
+{% if user.is_authenticated %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch("{% url 'cart_count_api' %}")
+            .then(res => res.json())
+            .then(data => {
+                const badge = document.getElementById("cart-count-badge");
+                if (badge && data.count !== undefined) {
+                    badge.textContent = data.count;
+                }
+            });
+    });
+</script>
+{% endif %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function () {
+    $('#search-query').on('keyup', function () {
+        let query = $(this).val();
+        if (query.length === 0) {
+            $('#search-results').hide().html('');
+            return;
+        }
+        $.ajax({
+            url: "{% url 'ajax_search' %}",
+            data: {q: query},
+            dataType: 'json',
+            success: function (data) {
+                let html = '';
+                if (data.results.length > 0) {
+                    data.results.forEach(function (item) {
+                        html += `<a href="/product/${item.id}/" class="dropdown-item">
+                            ${item.name} 
+                        </a>`;
+                    });
+                } else {
+                    html = '<span class="dropdown-item text-muted">No results found</span>';
+                }
+                $('#search-results').html(html).show();
+            }
+        });
+    });
+
+    // Hide results when clicking outside
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('#search-query, #search-results').length) {
+            $('#search-results').hide();
+        }
+    });
+});
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.star-rating .bi-star').forEach(function (star, idx, stars) {
+            star.addEventListener('click', function () {
+                const parent = star.closest('.star-rating');
+                const allStars = parent.querySelectorAll('.bi-star');
+                allStars.forEach(s => s.classList.remove('star-selected'));
+                for (let i = 0; i <= idx; i++) {
+                    allStars[i].classList.add('star-selected');
+                }
+            });
+        });
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+    });
+</script>
+<script src="{% static 'app.js' %}"></script>
+</body>
+</html>
