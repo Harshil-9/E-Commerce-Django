@@ -24,7 +24,7 @@ class Paymentfailure(TemplateView):
 class CheckoutView(LoginRequiredMixin, View):
     def get(self, request):
         cart, _ = Cart.objects.get_or_create(user=request.user)
-        cart_items = CartItem.objects.filter(cart=cart)
+        cart_items = CartItem.objects.select_related('laptop').filter(cart=cart)
 
         cart_data = []
         total_price = 0.0
@@ -94,7 +94,7 @@ class PaymentHandlerView(View):
 
             # Create Order(s) for each cart item
             cart = Cart.objects.get(user=payment.user)   
-            cart_items = CartItem.objects.filter(cart=cart)
+            cart_items = CartItem.objects.select_related('laptop').filter(cart=cart)
             created_orders = []
             for item in cart_items:
                 order = Order.objects.create(

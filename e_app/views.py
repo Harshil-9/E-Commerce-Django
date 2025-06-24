@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import render
 from Products.models import Laptop, CartItem
 from django.views import View
 from django.utils.decorators import method_decorator
@@ -6,9 +6,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
-
-
-    
+   
 class AjaxSearchView(View):
     def get(self, request):
         q = request.GET.get('q', '')

@@ -16,7 +16,7 @@ from django.db.models import Avg
 class CartCountView(View):
     def get(self, request):
         cart, _ = Cart.objects.get_or_create(user=request.user)
-        count = CartItem.objects.filter(cart=cart).count()
+        count = CartItem.objects.select_related('cart').filter(cart=cart).count()
         return JsonResponse({'count': count})
     
 class AllProductView(ListView):
@@ -43,7 +43,7 @@ class CartView(ListView):
 
     def get_queryset(self):
         cart, created = Cart.objects.get_or_create(user=self.request.user)
-        return CartItem.objects.filter(cart=cart)
+        return CartItem.objects.select_related('laptop').filter(cart=cart)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -79,7 +79,7 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         product = self.object
-        reviews = product.reviews.all()
+        reviews = product.reviews.select_related('user').all()
         avg_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
 
         if self.request.user.is_authenticated:
