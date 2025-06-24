@@ -8,7 +8,7 @@ User = get_user_model()
 class AuthViewsTest(TestCase):
     def setUp(self):
         self.login_url = reverse('login')
-        self.register_url = reverse('register')
+        self.register_url = reverse('register2')
         self.index_url = reverse('index')
         self.logout_url = reverse('logout')
 
@@ -41,7 +41,8 @@ class AuthViewsTest(TestCase):
         })
         self.assertEqual(response.status_code, 200)
         form = response.context['form']
-        self.assertFormError(form, None, ['Please enter a correct email and password.'])  
+        self.assertIn('Please enter a correct email and password',form.non_field_errors()[0])
+
 
     def test_register_view_logout_if_authenticated(self):
         self.client.login(email=self.user_data['email'], password=self.user_data['password'])
@@ -54,13 +55,14 @@ class AuthViewsTest(TestCase):
     def test_register_view_form_valid(self):
         response = self.client.post(self.register_url, {
             'email': 'newuser@example.com',
-            'name': 'New User',  
-            'password1': 'newstrongpassword',
-            'password2': 'newstrongpassword',
+            'name': 'New User',
+            'password': 'Testpass123!',
+            'confirm_password': 'Testpass123!',
         }, follow=True)
         self.assertRedirects(response, self.index_url)
         user = User.objects.get(email='newuser@example.com')
         self.assertTrue(user)
+
 
     def test_logout_view_clears_session_and_redirects(self):
         self.client.login(email=self.user_data['email'], password=self.user_data['password'])
@@ -69,7 +71,7 @@ class AuthViewsTest(TestCase):
         session['username'] = self.user.email
         session.save()
 
-        response = self.client.get(self.logout_url, follow=True)
+        response = self.client.post(self.logout_url, follow=True)
         self.assertRedirects(response, self.login_url)
         session = self.client.session
         self.assertNotIn('user_id', session)

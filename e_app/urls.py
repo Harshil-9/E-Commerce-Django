@@ -1,13 +1,13 @@
 from django.urls import path
 from .views import (
-    CustomHomeView,AjaxSearchView, ProductbyProcessor,
+    AjaxSearchView, ProductbyProcessor,
     ProductbyPrice, ProductbyBrand, ProfileView
 )
 
 urlpatterns = [
 
     path('profile/', ProfileView.as_view(), name='profile'),
-    path('home/', CustomHomeView.as_view(), name='index'),
+    
 
     # search
     path('ajax/search/', AjaxSearchView.as_view(), name='ajax_search'),

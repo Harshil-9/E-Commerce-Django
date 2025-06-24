@@ -1,10 +1,28 @@
 from django.contrib.auth import login, logout
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
+from django.views import View
+from Products.models import CartItem, Laptop
 from .forms import RegisterForms, LoginForm
 from django.views.generic.edit import FormView
 
+class CustomHomeView(View):
+    template_name = 'index.html'
+
+    def get(self,request):
+        laptops = Laptop.get_all_products()
+        return render(request, "index.html", {'laptops': laptops})
+
+    def post(self, request, pk):
+        item = get_object_or_404(CartItem, laptop__id=pk, cart__user=request.user)
+        action = request.POST.get('action')
+        if action == 'increment':
+            item.quantity += 1
+        elif action == 'decrement' and item.quantity > 1:
+            item.quantity -= 1
+        item.save()
+        return redirect('cart')
 
 class CustomLoginView(LoginView):
     authentication_form = LoginForm
